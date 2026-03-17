@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Student Form</title>
+</head>
+<body style="text-align:center; font-family:Arial;">
+
+<h2>Student Details</h2>
+
+<input type="text" placeholder="Full Name"><br><br>
+<input type="text" placeholder="Mobile Number"><br><br>
+<input type="text" placeholder="Class"><br><br>
+<input type="text" placeholder="Branch"><br><br>
+<input type="text" placeholder="Room Number"><br><br>
+
+<textarea placeholder="Reason"></textarea><br><br>
+
+<button onclick="openCamera()">Scan Face</button><br><br>
+<p id="status"></p>
+
+<hr>
+<h3>OTP Verification</h3>
+<button onclick="generateOTP()">Generate OTP</button><br><br>
+<p id="otpDisplay"></p>
+<input type="text" id="otpInput" placeholder="Enter OTP"><br><br>
+<button onclick="verifyOTP()">Verify OTP</button><br><br>
+
+<script>
+let generatedOTP = "";
+
+function openCamera() {
+    document.getElementById("status").innerText = "Scanning face... 🔍";
+    setTimeout(() => {
+        document.getElementById("status").innerText = "Face Verified ✅";
+    }, 2000);
+}
+
+function generateOTP() {
+    generatedOTP = Math.floor(1000 + Math.random() * 9000);
+    document.getElementById("otpDisplay").innerText = "OTP: " + generatedOTP;
+}
+
+function verifyOTP() {
+    let userOTP = document.getElementById("otpInput").value;
+    if(userOTP == generatedOTP) {
+        alert("OTP Verified ✅");
+        alert("Notification sent to Parent 📧");
+        window.location.href = "success.html";
+    } else {
+        alert("Wrong OTP ❌");
+    }
+}
+</script>
+
+</body>
+</html>
